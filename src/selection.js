@@ -4,43 +4,38 @@ import './style.css';
 
 const Selection = () => {
     const workManagement = ['Agility', 'Jira', 'Servicenow'];
-    const scm = ['Bitbucket', 'Git', 'Teamforge'];
-    const buildCi = ['Azure devops', 'Docker', 'github Actions', 'Jenkins'];
-    const artifactory = ['Azure devops', 'Jfrog', 'Nexus'];
-    const CD = ['ArgoCD' , 'Azure devops', 'DAI Deploy'];
+    const scm = ['Bitbucket', 'Github', 'Gitlab'];
+    const buildCi = ['Devops', 'Actions', 'Jenkins'];
+    const artifactory = ['Jfrog', 'Nexus'];
+    const CD = ['Argocd' , 'Devops', 'DAI Deploy'];
     const security = ['Blackduck', 'Checkmarkx', 'SonarQube'];
-    const provision = ['Anisble', 'AWS', 'Azure', 'Helm', 'Terraform'];
-    const secretsManagement = ['AWS Secret manager', 'Azure vault', 'Conjour', 'HasicorpVaule'];
-
-
+   
     const [selectedValuesMap, setSelectedValuesMap] = useState(new Map());
 
     const handleDropdownSelect = (dropdownName, selectedValue) => {
         const updatedMap = new Map(selectedValuesMap);
-        updatedMap.set(dropdownName, selectedValue);
+        updatedMap.set(dropdownName, selectedValue.toLowerCase());
         setSelectedValuesMap(updatedMap);
     };
 
     const handleOnClick = () => {
-        console.log('Apply in release !');
-        for (const [dropdownName, selectedValue] of selectedValuesMap) {
-            console.log(`Map values..... ${dropdownName}: ${selectedValue}`);
-        }
+        console.log('Downloading yaml !');
         const selectedValuesJSON = JSON.stringify(Object.fromEntries(selectedValuesMap));
         console.log(selectedValuesJSON);
+        
     };
 
     return (
     <div>
         <div className="title-headings">
-        <h4>Build you template using ......</h4></div>
+        <h4>Build you template using the below dropdown list </h4></div>
     <DropdownMenu templateOptions={workManagement} 
-                  labelName="workManagement" 
+                  labelName="WorkManagement" 
                   placeholder="Select a workMangement"
                   onSelect={(value) => handleDropdownSelect('workManagement', value)}/>
     
     <DropdownMenu templateOptions={scm} 
-                  labelName="scm" 
+                  labelName="SCM" 
                   placeholder = "Select a SCM tool"
                   onSelect={(value) => handleDropdownSelect('scm', value)}/>  
 
@@ -63,18 +58,8 @@ const Selection = () => {
                   labelName="Security" 
                   placeholder = "Select a security"
                   onSelect={(value) => handleDropdownSelect('security', value)}/>  
-
-    <DropdownMenu templateOptions={provision} 
-                  labelName="Provision" 
-                  placeholder = "Select a provision"
-                  onSelect={(value) => handleDropdownSelect('provision', value)}/>  
-    
-    <DropdownMenu templateOptions={secretsManagement} 
-                  labelName="SecretsManagement" 
-                  placeholder = "Select a secretsManagement"
-                  onSelect={(value) => handleDropdownSelect('secrets', value)}/>  
     <div>
-        <button onClick={handleOnClick}>Apply in Release</button>
+        <button onClick={handleOnClick}> Apply to Release  </button>
     </div>
     </div>
     );

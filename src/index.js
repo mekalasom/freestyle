@@ -18,7 +18,7 @@ function App() {
             <Switch>
                 <Route exact path="/">
                 <div className="title-headings">
-                 <h3>Automated Template / workflow Generation</h3></div>
+                 <h3>Automated Template / Workflow Generation</h3></div>
                  <h4>Choose your application </h4>
                      <img src={imageSrc} alt="Image1" className="image" />
                      <Link to = "/dropdown" className="selection"> {selectionAppln}</Link>
