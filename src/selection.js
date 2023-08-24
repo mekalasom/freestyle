@@ -3,12 +3,13 @@ import DropdownMenu from "./dropdownMenu.js";
 import './style.css';
 
 const Selection = () => {
+	const [showSuccessPopup, setShowSuccessPopup] = useState(false);
     const workManagement = ['Agility', 'Jira', 'Servicenow'];
     const scm = ['Bitbucket', 'Github', 'Gitlab'];
     const buildCi = ['Devops', 'Actions', 'Jenkins'];
     const artifactory = ['Jfrog', 'Nexus'];
     const CD = ['Argocd' , 'Devops', 'DAI-Deploy'];
-    const security = ['Blackduck', 'Checkmarkx', 'SonarQube'];
+    const security = ['Blackduck', 'Checkmarx', 'SonarQube'];
    
     const [selectedValuesMap, setSelectedValuesMap] = useState(new Map());
 
@@ -22,7 +23,7 @@ const Selection = () => {
         console.log('Downloading yaml !');
         const selectedValuesJSON = JSON.stringify(Object.fromEntries(selectedValuesMap));
         console.log(selectedValuesJSON);
-		
+		const result = "";
 		const response = await fetch('http://localhost:9093/selection', {
 			  method: 'POST',
 			  body: selectedValuesJSON,
@@ -30,8 +31,12 @@ const Selection = () => {
 				'Content-Type': 'application/json',
 				'Accept':'*/*'
 			  }
-			});
-		const result = await response.json();
+			}).then((response) => {
+                if (response.status === 200) {
+                    setShowSuccessPopup(true);
+                }
+				const result = response.json();
+            });
 		console.log(result);
         
     };
@@ -71,6 +76,10 @@ const Selection = () => {
                   onSelect={(value) => handleDropdownSelect('security', value)}/>  
     <div>
         <button onClick={handleOnClick}> Apply to Release  </button>
+		{showSuccessPopup && (
+                <div className="popup">
+                    <p>Success !!! you can view your template created in Digital.ai Release</p>
+			</div>)}
     </div>
     </div>
     );
