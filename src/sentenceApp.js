@@ -31,9 +31,9 @@ const SentenceApp = () => {
     }
 
     return (
-        <div>
+        <div >
             <div className="title-headings">
-                <h3> Selection Application </h3> </div>
+                <h3>Sentence Based YAML generation -Application </h3> </div>
             <div>
                  <textarea
                     rows={5} cols={50} 

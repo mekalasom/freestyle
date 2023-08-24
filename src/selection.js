@@ -18,10 +18,21 @@ const Selection = () => {
         setSelectedValuesMap(updatedMap);
     };
 
-    const handleOnClick = () => {
+    const handleOnClick = async () => {
         console.log('Downloading yaml !');
         const selectedValuesJSON = JSON.stringify(Object.fromEntries(selectedValuesMap));
         console.log(selectedValuesJSON);
+		
+		const response = await fetch('http://localhost:9093/selection', {
+			  method: 'POST',
+			  body: selectedValuesJSON,
+			  headers: {
+				'Content-Type': 'application/json',
+				'Accept':'*/*'
+			  }
+			});
+		const result = await response.json();
+		console.log(result);
         
     };
 

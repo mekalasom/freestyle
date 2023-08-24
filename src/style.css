@@ -27,3 +27,13 @@
     left: 200px;
   }
   
+.main-appln {
+  border: 5px solid;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 30px;
+  background-size: cover;
+  background-color: white;
+}
