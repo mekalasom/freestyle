@@ -7,7 +7,7 @@ const Selection = () => {
     const scm = ['Bitbucket', 'Github', 'Gitlab'];
     const buildCi = ['Devops', 'Actions', 'Jenkins'];
     const artifactory = ['Jfrog', 'Nexus'];
-    const CD = ['Argocd' , 'Devops', 'DAI Deploy'];
+    const CD = ['Argocd' , 'Devops', 'DAI-Deploy'];
     const security = ['Blackduck', 'Checkmarkx', 'SonarQube'];
    
     const [selectedValuesMap, setSelectedValuesMap] = useState(new Map());
