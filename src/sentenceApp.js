@@ -48,7 +48,7 @@ const SentenceApp = () => {
                     onChange={handleTextChange}
                     placeholder="Enter your text here..."/>
             </div>
-            <button onClick={handleSubmit}>Apply To Release%.</button>
+            <button onClick={handleSubmit}>Apply To Release</button>
 			{showSuccessPopup && (
                 <div className="popup">
                     <p>Success !!! you can view your template created in Digital.ai Release</p>
